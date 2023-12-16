@@ -6,30 +6,24 @@ import {
 } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu, theme } from "antd";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Nav from "../components/Navigation/Nav";
+import HeadNav from "../components/Navigation/header";
 import "./dashBoard.css";
-import logo from "../images/shoes-logo.webp";
+import banner from "../images/slider-image.webp";
+import { SearchOutlined } from "@ant-design/icons";
+import "../components/Navigation/Nav.scss";
 const { Header, Content, Sider, Footer } = Layout;
 
 function DashBoard() {
   return (
-    <Router>
-      <Layout>
-        <Header className="site-layout-background">
-          <img src={logo} alt="Logo" />
-          <Nav />
-          <Switch>
-            <Route path="/store"></Route>
-            <Route path="/contact"></Route>
-            <Route path="/about"></Route>
-            <Route path="/" exact></Route>
-            <Route path="*" exact>
-              <div> 404 Not Found </div>
-            </Route>
-          </Switch>
-        </Header>
-      </Layout>
-    </Router>
+    <>
+      <div className="home">
+        <HeadNav></HeadNav>
+      </div>
+
+      <div className="img">
+        <img src={banner} />
+      </div>
+    </>
   );
 }
 
