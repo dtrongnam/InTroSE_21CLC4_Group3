@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
@@ -15,10 +18,12 @@
     "@types/react-dom": "^18.2.17",
     "antd": "^5.11.5",
     "axios": "^1.6.2",
+    "babel-plugin-macros": "^3.1.0",
     "expo-status-bar": "^1.7.1",
     "install": "^0.13.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
+    "mdb-react-ui-kit": "^7.0.0",
     "npm": "^10.2.4",
     "or": "^0.2.0",
     "react": "^18.2.0",
@@ -36,6 +41,7 @@
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
     "sort-by": "^1.2.0",
+    "styled-components": "^6.1.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -61,5 +67,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.69.5"
   }
 }
