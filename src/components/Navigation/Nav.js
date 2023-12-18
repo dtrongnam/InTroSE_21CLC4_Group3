@@ -1,8 +1,11 @@
 import React from "react";
 import "./Nav.scss";
 import { NavLink } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
+
 import { SearchOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined } from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 const Nav = (props) => {
   const handleExpand = () => {
@@ -24,6 +27,20 @@ const Nav = (props) => {
         <div>ABOUT</div>
       </NavLink>
 
+      <NavLink to="/login">
+        <div>
+          <FontAwesomeIcon
+            icon={faUser}
+            style={{
+              fontSize: "21px",
+              color: "#f05d4a",
+              marginTop: "0px",
+              marginLeft: "200px",
+            }}
+          />
+        </div>
+      </NavLink>
+
       <button className="search-wrapper" onClick={handleExpand}>
         <SearchOutlined />
       </button>
@@ -31,19 +48,14 @@ const Nav = (props) => {
         className="search-input"
         type="search"
         placeholder="Search product"
-        style={{
-          borderBlockColor: "#f05d4a",
-        }}
       />
-
-      <NavLink to="/login">
+      <NavLink to="/cart">
         <div>
-          <VscAccount
+          <ShoppingCartOutlined
             style={{
-              fontSize: "21px",
+              fontSize: "23px",
               color: "#f05d4a",
-              marginTop: "0px",
-              marginLeft: "50px",
+              marginLeft: "130px",
             }}
           />
         </div>

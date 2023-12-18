@@ -1,5 +1,5 @@
 import React from "react";
-import DashBoard from "./pages/dashBoard";
+import DashBoard from "./components/pages/dashBoard";
 
 function App() {
   return (

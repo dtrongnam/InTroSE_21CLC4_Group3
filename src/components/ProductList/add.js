@@ -48,6 +48,18 @@ const Nav = (props) => {
           />
         </div>
       </NavLink>
+      <NavLink to="/login">
+        <div>
+          <VscAccount
+            style={{
+              fontSize: "21px",
+              color: "#f05d4a",
+              marginTop: "0px",
+              marginLeft: "50px",
+            }}
+          />
+        </div>
+      </NavLink>
     </div>
   );
 };
