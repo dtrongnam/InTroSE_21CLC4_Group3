@@ -1,11 +1,12 @@
 import React from "react";
 import "./Nav.scss";
 import { NavLink } from "react-router-dom";
-
 import { SearchOutlined } from "@ant-design/icons";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+
+
 
 const Nav = (props) => {
   const handleExpand = () => {

@@ -1,10 +1,13 @@
 import React from "react";
-import DashBoard from "./components/pages/dashBoard";
+import Login from './components/Login/login'
+import Nav from './components/Navigation/Nav'
+
 
 function App() {
   return (
     <div className="App">
-      <DashBoard></DashBoard>
+      <Login></Login>
+      {/* <Nav></Nav> */}
     </div>
   );
 }
