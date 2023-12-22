@@ -1,0 +1,15 @@
+.ic-title {
+  margin-top: 30px;
+  font-size: 24px;
+  margin-left: 70px;
+}
+
+.ic-title .ic {
+  display: inline-flex;
+  margin-right: 10px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 4px solid #eb5d44;
+}
