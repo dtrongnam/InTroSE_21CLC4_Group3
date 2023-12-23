@@ -2,10 +2,9 @@ import React, { useState } from "react";
 // import "./Nav.scss";
 import "./login.css";
 import { NavLink } from "react-router-dom";
-import { VscAccount } from "react-icons/vsc";
-import { SearchOutlined } from "@ant-design/icons";
+import Nav from "../Navigation/Nav";
 
-const Nav = (props) => {
+const Login = (props) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleExpand = () => {
@@ -24,7 +23,7 @@ const Nav = (props) => {
   };
 
   return (
-    <div className="topnav">
+    <div>
       {/* ... other navigation links ... */}
       {/* <NavLink to="/" exact>
         HOME
@@ -50,7 +49,7 @@ const Nav = (props) => {
           borderBlockColor: "#f05d4a",
         }}
       /> */}
-
+      <Nav></Nav>
       <div className="account-section">
         <h2>My account</h2>
         <div>Login</div>
@@ -85,12 +84,11 @@ const Nav = (props) => {
         <div className="lost-password">
           <NavLink to="/lost-password">Lost your password?</NavLink>
         </div>
-      </div>
 
-      
-      {/* ... other elements ... */}
+        {/* ... other elements ... */}
+      </div>
     </div>
   );
 };
 
-export default Nav;
+export default Login;

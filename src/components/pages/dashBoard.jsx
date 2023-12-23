@@ -3,7 +3,7 @@ import React from "react";
 import HeadNav from "../Navigation/header";
 import "./dashBoard.css";
 import banner from "../../images/slider-image.webp";
-import "../Navigation/Nav";
+import Nav from "../Navigation/Nav";
 
 import BestSell from "./BestSeller/bestSeller";
 
@@ -11,7 +11,7 @@ function DashBoard() {
   return (
     <>
       <div className="home">
-        <HeadNav></HeadNav>
+        <Nav></Nav>
       </div>
 
       <div className="image">
