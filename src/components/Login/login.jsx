@@ -22,35 +22,41 @@ const Login = (props) => {
     // and use them for authentication
   };
 
-  return (
-    <div>
-      {/* ... other navigation links ... */}
-      {/* <NavLink to="/" exact>
-        HOME
-      </NavLink>
-      <NavLink to="/store">
-        <div>STORE </div>
-      </NavLink>
-      <NavLink to="/contact">
-        <div>CONTACT </div>
-      </NavLink>
-      <NavLink to="/about">
-        <div>ABOUT</div>
-      </NavLink>
+  const products = [
+    {
+      id: 1,
+      image: "url_to_image_1", // Thay thế bằng URL hình ảnh của sản phẩm 1
+      name: "Product 1",
+      description: "Description of Product 1",
+    },
+    {
+      id: 2,
+      image: "url_to_image_2", // Thay thế bằng URL hình ảnh của sản phẩm 2
+      name: "Product 2",
+      description: "Description of Product 2",
+    },
+    // Thêm nhiều sản phẩm khác nếu cần
+  ];
 
-      <button className="search-wrapper" onClick={handleExpand}>
-        <SearchOutlined />
-      </button>
-      <input
-        className="search-input"
-        type="search"
-        placeholder="Search product"
-        style={{
-          borderBlockColor: "#f05d4a",
-        }}
-      /> */}
-      <Nav></Nav>
-      <div className="account-section">
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+
+  const handleNextProduct = () => {
+    setCurrentProductIndex((prevIndex) =>
+      prevIndex < products.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  const handlePrevProduct = () => {
+    setCurrentProductIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : products.length - 1
+    );
+  };
+
+  return (
+    <div className="topnav">
+      {/* ... other navigation links ... */}
+      <div className="container">
+        <div className="account-section">
         <h2>My account</h2>
         <div>Login</div>
         <div>
@@ -84,8 +90,28 @@ const Login = (props) => {
         <div className="lost-password">
           <NavLink to="/lost-password">Lost your password?</NavLink>
         </div>
-
-        {/* ... other elements ... */}
+      </div>
+{/* --------------------------------------------------------- */}
+<div className="product-section">
+          <h2>Featured Products</h2>
+          <div className="product-display">
+            <div className="product-image">
+              <img src={products[currentProductIndex].image} alt={products[currentProductIndex].name} />
+            </div>
+            <div className="product-info">
+              <h3>{products[currentProductIndex].name}</h3>
+              <p>{products[currentProductIndex].description}</p>
+            </div>
+          </div>
+          <div className="product-navigation">
+            <button className="arrow-btn" onClick={handlePrevProduct}>
+              <span>&#9664;</span> {/* Left arrow */}
+            </button>
+            <button className="arrow-btn" onClick={handleNextProduct}>
+              <span>&#9654;</span> {/* Right arrow */}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
