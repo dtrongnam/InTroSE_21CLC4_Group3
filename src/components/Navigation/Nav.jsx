@@ -24,6 +24,8 @@ const Nav = (props) => {
 
             <Link to="/">HOME</Link>
             <Link to="/store">
+              {" "}
+              {""}
               <div>STORE </div>
             </Link>
             <Link to="/contact">

@@ -8,6 +8,7 @@ import DashBoard from "../pages/dashBoard.jsx";
 import ReactDOM from "react-dom/client";
 import Nav from "./Nav";
 import NotFound from "../../routes/NotFound";
+import Store from "../Store/Store";
 const { Header, Content, Sider, Footer } = Layout;
 
 function headNav() {
@@ -21,7 +22,7 @@ function headNav() {
               <Routes>
                 <Route path="/" element={<Nav />}>
                   <Route index element={<DashBoard />} />
-                  <Route path="store" />
+                  <Route path="store" element={<Login />} />
                   <Route path="login" element={<Login />}>
                     <Route path="contact" />
                   </Route>
