@@ -1,11 +1,11 @@
-.header {
+.store-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.search-container {
+.store-search-container {
   display: flex;
   align-items: center;
 }
@@ -40,17 +40,20 @@ h2 {
   text-align: left;
   padding-left: 10px;
 }
-
+/* ------------------------------------------------------------------- */
 .product-grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start; /* Sắp xếp từ bên trái qua phải */
 }
 
 .product-card {
-  width: 30%;
+  width: calc(33.33% - 20px); /* Chiều rộng của sản phẩm, giảm 20px để có khoảng cách giữa các sản phẩm */
   margin: 10px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column; /* Chuyển sang layout dạng cột */
+  align-items: center; /* Căn giữa các phần tử theo chiều ngang */
 }
 
 .product-card img {
@@ -61,13 +64,33 @@ h2 {
 .product-card h3 {
   margin: 10px 0;
   color: #333;
+  text-align: center; /* Căn giữa văn bản */
 }
 
 .product-card p {
   margin: 0;
   color: #777;
+  text-align: center; /* Căn giữa văn bản */
 }
 
+@media (max-width: 992px) {
+  .product-card {
+    width: calc(50% - 20px); /* Hiển thị 2 sản phẩm trên mỗi hàng */
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 20px); /* Hiển thị 2 sản phẩm trên mỗi hàng */
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card {
+    width: calc(100% - 20px); /* Hiển thị 1 sản phẩm trên mỗi hàng */
+  }
+}
+/* -------------------------------------------------------------------- */
 .button-container {
   display: flex;
   justify-content: center;
@@ -88,4 +111,53 @@ button {
 
 button:hover {
   background-color: #f05d4a;
+}
+
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.pagination button {
+  background-color: #f05d4a;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #d1483c;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.navigation-buttons button {
+  background-color: #f05d4a;
+  color: #fff;
+  padding: 8px 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+.navigation-buttons button:hover {
+  background-color: #d1483c;
 }

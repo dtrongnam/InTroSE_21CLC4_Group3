@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Store.css";
-import Nav from "../Navigation/Nav";
+import StoreNav from "../Navigation/Nav";
 
 const products = [
   {
@@ -57,22 +58,44 @@ const products = [
     price: 100,
     image: "url_to_image_9.jpg",
   },
+  {
+    id: 10,
+    name: "Sản phẩm 10",
+    price: 100,
+    image: "url_to_image_10.jpg",
+  },
+  // {
+  //   id: 11,
+  //   name: "Sản phẩm 11",
+  //   price: 100,
+  //   image: "url_to_image_11.jpg",
+  // },
   // Thêm các sản phẩm khác tương tự ở đây
 ];
 
+const itemsPerPage = 6; // Số sản phẩm hiển thị trên mỗi trang
+
 const Store = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const indexOfLastProduct = currentPage * itemsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <div>
-      <Nav />
-      <div className="header">
+      <StoreNav />
+      <div className="store-header">
         <h2>Store</h2>
-        <div className="search-container">
+        <div className="store-search-container">
           <input type="text" placeholder="Tìm kiếm..." />
           <button type="button">Tìm kiếm</button>
         </div>
       </div>
       <div className="product-grid">
-        {products.map((product, index) => (
+        {currentProducts.map((product, index) => (
           <div key={product.id} className="product-card">
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
@@ -84,7 +107,24 @@ const Store = () => {
           </div>
         ))}
       </div>
+      <div className="pagination-container">
+      <div className="pagination">
+        {Array.from({ length: Math.ceil(products.length / itemsPerPage) }).map((_, index) => (
+          <button key={index} onClick={() => paginate(index + 1)}>
+            {index + 1}
+          </button>
+        ))}
+      </div>
+      <div className="navigation-buttons">
+        <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
+          &#8592; 
+        </button>
+        <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(products.length / itemsPerPage)}>
+          &#8594;
+        </button>
+      </div>
     </div>
+  </div>
   );
 };
 
