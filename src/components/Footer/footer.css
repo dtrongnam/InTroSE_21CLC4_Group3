@@ -1,0 +1,31 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.footer {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 100px 15%;
+  text-align: center;
+  /*width: 100%;*/
+  display: flex;
+}
+
+.footer div {
+  font-family: serif;
+
+  text-align: center;
+  font-size: 18px;
+}
+
+.col-2 {
+  margin-left: 50px;
+}
+
+.col-3 {
+  margin-left: 50px;
+}

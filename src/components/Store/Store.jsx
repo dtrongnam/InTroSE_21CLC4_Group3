@@ -63,6 +63,7 @@ const products = [
 const Store = () => {
   return (
     <div>
+      <Nav />
       <div className="header">
         <h2>Store</h2>
         <div className="search-container">
