@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Store.css";
 import StoreNav from "../Navigation/Nav";
+import Footer from "../Footer/footer";
 
 const products = [
   {
@@ -80,7 +81,10 @@ const Store = () => {
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -108,23 +112,32 @@ const Store = () => {
         ))}
       </div>
       <div className="pagination-container">
-      <div className="pagination">
-        {Array.from({ length: Math.ceil(products.length / itemsPerPage) }).map((_, index) => (
-          <button key={index} onClick={() => paginate(index + 1)}>
-            {index + 1}
+        <div className="pagination">
+          {Array.from({
+            length: Math.ceil(products.length / itemsPerPage),
+          }).map((_, index) => (
+            <button key={index} onClick={() => paginate(index + 1)}>
+              {index + 1}
+            </button>
+          ))}
+        </div>
+        <div className="navigation-buttons">
+          <button
+            onClick={() => paginate(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            &#8592;
           </button>
-        ))}
+          <button
+            onClick={() => paginate(currentPage + 1)}
+            disabled={currentPage === Math.ceil(products.length / itemsPerPage)}
+          >
+            &#8594;
+          </button>
+        </div>
       </div>
-      <div className="navigation-buttons">
-        <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
-          &#8592; 
-        </button>
-        <button onClick={() => paginate(currentPage + 1)} disabled={currentPage === Math.ceil(products.length / itemsPerPage)}>
-          &#8594;
-        </button>
-      </div>
+      <Footer />
     </div>
-  </div>
   );
 };
 

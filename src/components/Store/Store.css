@@ -30,6 +30,8 @@ button[type="button"]:hover {
 }
 
 body {
+  overflow-x: hidden;
+  overflow-y: scroll;
   font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
@@ -48,7 +50,9 @@ h2 {
 }
 
 .product-card {
-  width: calc(33.33% - 20px); /* Chiều rộng của sản phẩm, giảm 20px để có khoảng cách giữa các sản phẩm */
+  width: calc(
+    33.33% - 20px
+  ); /* Chiều rộng của sản phẩm, giảm 20px để có khoảng cách giữa các sản phẩm */
   margin: 10px;
   box-sizing: border-box;
   display: flex;

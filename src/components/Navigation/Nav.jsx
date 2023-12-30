@@ -43,7 +43,7 @@ const Nav = (props) => {
                   style={{
                     fontSize: "21px",
                     color: "#f05d4a",
-                    marginTop: "0px",
+                    marginTop: "5px",
                     marginLeft: "200px",
                   }}
                 />

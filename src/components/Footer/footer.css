@@ -1,31 +1,80 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@font-face {
+  font-family: "TT Barrels Trl4";
+  font-style: normal;
+  font-weight: 400;
+  src: local("TT Barrels Trl"),
+    url("https://fonts.cdnfonts.com/s/96459/TT Barrels Trial Regular.woff")
+      format("woff");
 }
+
+@font-face {
+  font-family: "TT Barrels Trl6";
+  font-style: normal;
+  font-weight: 800;
+  src: local("TT Barrels Trl"),
+    url("https://fonts.cdnfonts.com/s/96459/TT Barrels Trial Regular.woff")
+      format("woff");
+}
+
 .footer {
-  position: relative;
-  background-color: rgb(255, 255, 255);
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 100px 15%;
+  background-color: #ffffff;
+  color: #666;
+  padding: 20px;
   text-align: center;
-  /*width: 100%;*/
-  display: flex;
+  padding-top: 50px;
 }
 
-.footer div {
-  font-family: serif;
-
-  text-align: center;
-  font-size: 18px;
+.column1 .column2 .column3 {
+  display: inline-block;
+  width: 30%;
+  vertical-align: top;
+  text-align: left;
+}
+.column1 {
+  font-family: "TT Barrels Trl4";
+  margin-top: -90px;
+  margin-right: 400px;
+  text-align: justify;
+  font-size: 16px;
 }
 
-.col-2 {
-  margin-left: 50px;
+.column1 p {
+  font-family: "TT Barrels Trl4";
+  margin-top: 15px;
+  text-align: justify;
+  font-size: 16px;
+  max-width: 250px;
 }
 
-.col-3 {
-  margin-left: 50px;
+.column2 {
+  font-family: "TT Barrels Trl4";
+  margin-left: -200px;
+  margin-top: 0px;
+  text-align: left;
+}
+
+.column2 ul {
+  font-family: "TT Barrels Trl4";
+  text-align: left;
+  margin-top: 0px;
+  list-style-type: none;
+  margin-left: -40px;
+}
+
+.column3 {
+  font-family: "TT Barrels Trl4";
+  margin-left: 200px;
+  margin-top: -30px;
+  text-align: left;
+}
+
+.column3 ul {
+  font-family: "TT Barrels Trl4";
+  text-align: left;
+  list-style-type: none;
+  margin-left: -40px;
+}
+
+li {
+  padding-top: 7px;
 }

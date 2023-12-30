@@ -4,6 +4,7 @@ import HeadNav from "../Navigation/header";
 import "./dashBoard.css";
 import banner from "../../images/slider-image.webp";
 import Nav from "../Navigation/Nav";
+import Footer from "../Footer/footer";
 
 import BestSell from "./BestSeller/bestSeller";
 
@@ -21,6 +22,8 @@ function DashBoard() {
       <div className="bestSell">
         <BestSell></BestSell>
       </div>
+
+      <Footer />
     </>
   );
 }
