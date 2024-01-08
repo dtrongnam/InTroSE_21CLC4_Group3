@@ -1,11 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate  } from "react-router-dom";
 // import "./Nav.scss";
 import "./login.css";
 import { NavLink } from "react-router-dom";
 import Nav from "../Navigation/Nav";
+import { setCookieCustom } from "../../utils/cookies";
 
 const Login = (props) => {
   const [rememberMe, setRememberMe] = useState(false);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [err, setErr] = useState('');
+  const navigate = useNavigate();
 
   const handleExpand = () => {
     const search = document.querySelector(".search-input");
@@ -16,22 +22,40 @@ const Login = (props) => {
     setRememberMe(!rememberMe);
   };
 
-  const handleLogin = () => {
-    // Add your login logic here
-    // You can access the entered username and password from the state
-    // and use them for authentication
+  const handleLogin = async () => {
+      const response = await fetch('http://localhost:4000/api/user/sign-in', {
+        method: 'POST',
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          email: username, password
+        })
+      })
+      if(response.ok){
+        const data = await response.json();
+        console.log(data.accessToken);
+        setCookieCustom('accessToken', data.access_token, 1);
+        setCookieCustom('refreshToken', data.refresh_token, 3);
+        navigate('/');
+      }
+      else{
+        const data = await response.json();
+        setErr(data.message);
+      }
   };
 
   const products = [
     {
       id: 1,
-      image: "url_to_image_1", // Thay thế bằng URL hình ảnh của sản phẩm 1
+      image: "url_to_image_1",
       name: "Product 1",
       description: "Description of Product 1",
     },
     {
       id: 2,
-      image: "url_to_image_2", // Thay thế bằng URL hình ảnh của sản phẩm 2
+      image: "url_to_image_2",
       name: "Product 2",
       description: "Description of Product 2",
     },
@@ -66,6 +90,7 @@ const Login = (props) => {
               id="username"
               type="text"
               placeholder="Enter your username or email"
+              onChange={(event)=>setUsername(event.target.value)}
             />
           </div>
           <div>
@@ -74,6 +99,7 @@ const Login = (props) => {
               id="password"
               type="password"
               placeholder="Enter your password"
+              onChange={(event)=>setPassword(event.target.value)}
             />
           </div>
           <div className="login-options">

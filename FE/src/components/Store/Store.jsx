@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Store.css";
 import StoreNav from "../Navigation/Nav";
@@ -65,19 +65,13 @@ const products = [
     price: 100,
     image: "url_to_image_10.jpg",
   },
-  // {
-  //   id: 11,
-  //   name: "Sản phẩm 11",
-  //   price: 100,
-  //   image: "url_to_image_11.jpg",
-  // },
-  // Thêm các sản phẩm khác tương tự ở đây
 ];
 
 const itemsPerPage = 6; // Số sản phẩm hiển thị trên mỗi trang
 
 const Store = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState([]);
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
@@ -85,6 +79,20 @@ const Store = () => {
     indexOfFirstProduct,
     indexOfLastProduct
   );
+
+  const fetchProduct = async () =>{
+    const response = await fetch('http://localhost:4000/api/product',{
+      method: 'GET'}
+    )
+    if (response.ok){
+      const data = await response.json();
+      setProducts(data.products);
+    }
+  }
+
+  useEffect(()=>{
+    fetchProduct();
+  })
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -99,8 +107,8 @@ const Store = () => {
         </div>
       </div>
       <div className="product-grid">
-        {currentProducts.map((product, index) => (
-          <div key={product.id} className="product-card">
+        {products.map((product) => (
+          <div key={product._id} className="product-card">
             <img src={product.image} alt={product.name} />
             <h3>{product.name}</h3>
             <p>Giá: ${product.price}</p>
