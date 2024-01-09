@@ -113,7 +113,7 @@ nav ul,
 }
 
 .main_content .card .card_header .price {
-  margin-top: -15px;
+  margin-top: 15px;
   margin-left: -190px;
   font-size: 16px;
   color: #f05d4a;

@@ -20,9 +20,6 @@ function DashBoard() {
         <img src={banner} />
       </div>
 
-      <div className="onDemands">
-        <OnDemands></OnDemands>
-      </div>
       <div className="bestSell">
         <BestSell></BestSell>
       </div>

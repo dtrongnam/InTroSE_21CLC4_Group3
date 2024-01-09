@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react"; // Assuming this is correct
+
 // import "./Nav.scss";
 import "./login.css";
 import { NavLink } from "react-router-dom";
 import Nav from "../Navigation/Nav";
 import { setCookieCustom } from "../../utils/cookies";
+import product_cart from "../ProductList/productList";
 
 const Login = (props) => {
   const [rememberMe, setRememberMe] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [err, setErr] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [err, setErr] = useState("");
   const navigate = useNavigate();
 
   const handleRememberMeChange = () => {
@@ -18,26 +20,26 @@ const Login = (props) => {
   };
 
   const handleLogin = async () => {
-      const response = await fetch('http://localhost:4000/api/user/sign-in', {
-        method: 'POST',
-        headers:{
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          email: username, password
-        })
-      })
-      const data = await response.json();
-      if(data.status !== 'ERR'){
-        console.log(data);
-        setCookieCustom('accessToken', data.access_token, 1);
-        setCookieCustom('refreshToken', data.refresh_token, 3);
-        navigate('/');
-      }
-      else{
-        setErr(data.message);
-      }
+    const response = await fetch("http://localhost:4000/api/user/sign-in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        email: username,
+        password,
+      }),
+    });
+    const data = await response.json();
+    if (data.status !== "ERR") {
+      console.log(data);
+      setCookieCustom("accessToken", data.access_token, 1);
+      setCookieCustom("refreshToken", data.refresh_token, 3);
+      navigate("/");
+    } else {
+      setErr(data.message);
+    }
   };
 
   const products = [
@@ -69,6 +71,22 @@ const Login = (props) => {
     );
   };
 
+  const [productCart, setProductCart] = useState([]); // Renamed state variables
+
+  const fetchProduct = async () => {
+    const response = await fetch("http://localhost:4000/api/product", {
+      method: "GET",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setProductCart(data.products);
+    }
+  };
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
   return (
     <div className="topnav">
       <Nav />
@@ -82,7 +100,7 @@ const Login = (props) => {
               id="username"
               type="text"
               placeholder="Enter your username or email"
-              onChange={(event)=>setUsername(event.target.value)}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div>
@@ -91,7 +109,7 @@ const Login = (props) => {
               id="password"
               type="password"
               placeholder="Enter your password"
-              onChange={(event)=>setPassword(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
             <div>{err}</div>
           </div>
@@ -116,13 +134,12 @@ const Login = (props) => {
           <div className="product-display">
             <div className="product-image">
               <img
-                src={products[currentProductIndex].image}
-                alt={products[currentProductIndex].name}
+                src={product_cart[currentProductIndex].thumb}
+                alt={product_cart[currentProductIndex].product_name}
               />
             </div>
             <div className="product-info">
-              <h3>{products[currentProductIndex].name}</h3>
-              <p>{products[currentProductIndex].description}</p>
+              <p>{product_cart[currentProductIndex].description}</p>
             </div>
           </div>
           <div className="product-navigation">
