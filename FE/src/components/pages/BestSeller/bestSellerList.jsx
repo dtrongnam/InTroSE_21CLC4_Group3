@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import productList from "../../ProductList/productList"; // Assuming this is correct
+import React, { useState, useEffect } from "react";// Assuming this is correct
 
 const BestList = () => {
   const [productCart, setProductCart] = useState([]); // Renamed state variables
@@ -10,8 +9,7 @@ const BestList = () => {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log(data.products)
-      setProductCart(data.products); // Use correct setter function
+      setProductCart(data.products);
     }
   };
 
@@ -22,7 +20,7 @@ const BestList = () => {
   return (
     <div className="main_content">
       {productCart.map((item) => (
-        <div className="card" key={item.id}>
+        <div className="card" key={item._id}>
           <div className="card_img">
             <img src={item.image} alt={item.name} />
           </div>

@@ -13,11 +13,6 @@ const Login = (props) => {
   const [err, setErr] = useState('');
   const navigate = useNavigate();
 
-  const handleExpand = () => {
-    const search = document.querySelector(".search-input");
-    search.classList.toggle("search-expanded");
-  };
-
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
   };
@@ -33,15 +28,14 @@ const Login = (props) => {
           email: username, password
         })
       })
-      if(response.ok){
-        const data = await response.json();
-        console.log(data.accessToken);
+      const data = await response.json();
+      if(data.status !== 'ERR'){
+        console.log(data);
         setCookieCustom('accessToken', data.access_token, 1);
         setCookieCustom('refreshToken', data.refresh_token, 3);
         navigate('/');
       }
       else{
-        const data = await response.json();
         setErr(data.message);
       }
   };
@@ -59,7 +53,6 @@ const Login = (props) => {
       name: "Product 2",
       description: "Description of Product 2",
     },
-    // Thêm nhiều sản phẩm khác nếu cần
   ];
 
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -79,7 +72,6 @@ const Login = (props) => {
   return (
     <div className="topnav">
       <Nav />
-      {/* ... other navigation links ... */}
       <div className="container">
         <div className="account-section">
           <h2>My account</h2>
@@ -101,6 +93,7 @@ const Login = (props) => {
               placeholder="Enter your password"
               onChange={(event)=>setPassword(event.target.value)}
             />
+            <div>{err}</div>
           </div>
           <div className="login-options">
             <button onClick={handleLogin}>Login</button>
@@ -118,7 +111,6 @@ const Login = (props) => {
             <NavLink to="/lost-password">Lost your password?</NavLink>
           </div>
         </div>
-        {/* --------------------------------------------------------- */}
         <div className="product-section">
           <h2>Featured Products</h2>
           <div className="product-display">
@@ -135,10 +127,10 @@ const Login = (props) => {
           </div>
           <div className="product-navigation">
             <button className="arrow-btn" onClick={handlePrevProduct}>
-              <span>&#9664;</span> {/* Left arrow */}
+              <span>&#9664;</span>
             </button>
             <button className="arrow-btn" onClick={handleNextProduct}>
-              <span>&#9654;</span> {/* Right arrow */}
+              <span>&#9654;</span>
             </button>
           </div>
         </div>

@@ -1,81 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import "./Store.css";
 import StoreNav from "../Navigation/Nav";
 import Footer from "../Footer/footer";
+import Cookies from 'js-cookie'
 
-const products = [
-  {
-    id: 1,
-    name: "Sản phẩm 1",
-    price: 100,
-    image: "url_to_image_1.jpg",
-  },
-  {
-    id: 2,
-    name: "Sản phẩm 2",
-    price: 150,
-    image: "url_to_image_2.jpg",
-  },
-  {
-    id: 3,
-    name: "Sản phẩm 3",
-    price: 120,
-    image: "url_to_image_3.jpg",
-  },
-  {
-    id: 4,
-    name: "Sản phẩm 4",
-    price: 100,
-    image: "url_to_image_4.jpg",
-  },
-  {
-    id: 5,
-    name: "Sản phẩm 5",
-    price: 100,
-    image: "url_to_image_5.jpg",
-  },
-  {
-    id: 6,
-    name: "Sản phẩm 6",
-    price: 100,
-    image: "url_to_image_6.jpg",
-  },
-  {
-    id: 7,
-    name: "Sản phẩm 7",
-    price: 100,
-    image: "url_to_image_7.jpg",
-  },
-  {
-    id: 8,
-    name: "Sản phẩm 8",
-    price: 100,
-    image: "url_to_image_8.jpg",
-  },
-  {
-    id: 9,
-    name: "Sản phẩm 9",
-    price: 100,
-    image: "url_to_image_9.jpg",
-  },
-  {
-    id: 10,
-    name: "Sản phẩm 10",
-    price: 100,
-    image: "url_to_image_10.jpg",
-  },
-];
-
-const itemsPerPage = 6; // Số sản phẩm hiển thị trên mỗi trang
+const itemsPerPage = 8;
 
 const Store = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [products, setProducts] = useState([]);
+  const [productCart, setProductsCart] = useState([]);
 
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
-  const currentProducts = products.slice(
+  const currentProducts = productCart.slice(
     indexOfFirstProduct,
     indexOfLastProduct
   );
@@ -86,13 +23,41 @@ const Store = () => {
     )
     if (response.ok){
       const data = await response.json();
-      setProducts(data.products);
+      setProductsCart(data.products);
+      console.log(data);
     }
   }
 
+  const addToCart = (product) => {
+    const productToAdd = productCart.find((item) => item._id === product._id);
+
+    if (productToAdd) {
+      const cartData = JSON.parse(localStorage.getItem('cart'))  || [];
+
+      const productIndex = cartData.findIndex((item) => item._id === product._id);
+
+      if (productIndex !== -1) {
+        cartData[productIndex].quantity += 1;
+      } else {
+        cartData.push({ 
+          _id: product._id, 
+          quantity: 1,
+          product_name: product.name,
+          price: product.price,
+          currency:  product.currency,
+          thump: product.image
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cartData));
+      
+      console.log("Sản phẩm đã được thêm vào giỏ hàng:", productToAdd);
+    }
+  };
+
   useEffect(()=>{
     fetchProduct();
-  })
+  }, [currentPage])
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -102,19 +67,22 @@ const Store = () => {
       <div className="store-header">
         <h2>Store</h2>
         <div className="store-search-container">
-          <input type="text" placeholder="Tìm kiếm..." />
-          <button type="button">Tìm kiếm</button>
+          <input type="text" placeholder="search..." />
+          <button type="button">search</button>
         </div>
       </div>
       <div className="product-grid">
-        {products.map((product) => (
-          <div key={product._id} className="product-card">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>Giá: ${product.price}</p>
+        {currentProducts.map((productCart) => (
+          <div key={productCart._id} className="product-card">
+            <img src={productCart.image} alt={productCart.name} />
+            <h3>{productCart.name}</h3>
+            <p>
+              Price: {productCart.price}
+              {productCart.currency}
+            </p>
             <div className="button-container">
-              <button>Mua</button>
-              <button>Yêu thích</button>
+              <button className="btnBuy" onClick={() => addToCart(productCart)}>Add</button>
+              <button className="wishList">🤍</button>
             </div>
           </div>
         ))}
@@ -122,7 +90,7 @@ const Store = () => {
       <div className="pagination-container">
         <div className="pagination">
           {Array.from({
-            length: Math.ceil(products.length / itemsPerPage),
+            length: Math.ceil(productCart.length / itemsPerPage),
           }).map((_, index) => (
             <button key={index} onClick={() => paginate(index + 1)}>
               {index + 1}
@@ -138,11 +106,12 @@ const Store = () => {
           </button>
           <button
             onClick={() => paginate(currentPage + 1)}
-            disabled={currentPage === Math.ceil(products.length / itemsPerPage)}
+            disabled={currentPage === Math.ceil(productCart.length / itemsPerPage)}
           >
             &#8594;
           </button>
         </div>
+
       </div>
       <Footer />
     </div>

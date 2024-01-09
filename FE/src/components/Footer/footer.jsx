@@ -3,8 +3,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <div class="footer">
-      <div class="column1">
+    <div className="footer">
+      <div className="column1">
         <h3>WELCOME TO SHOES STORE</h3>
         <p>
           Welcome to our shoe store, where fashion, comfort, and individuality
@@ -16,7 +16,7 @@ function Footer() {
           step.
         </p>
       </div>
-      <div class="column2">
+      <div className="column2">
         <h3>MORE ABOUT STORE</h3>
         <ul>
           <li>Multiple Branches</li>
@@ -34,7 +34,7 @@ function Footer() {
           <li>Lost Password</li>
         </ul>
       </div>
-      <div class="column3">
+      <div className="column3">
         <h3>CONTACT DETAILS</h3>
         <p>227 Nguyễn Văn Cừ, P4, Quận 5, Tp HCM.</p>
         <p>Contact : 0913868260</p>

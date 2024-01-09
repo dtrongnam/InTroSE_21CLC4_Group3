@@ -1,17 +1,17 @@
 .ic-title {
   margin-top: 30px;
-  font-size: 24px;
-  margin-left: 70px;
+  font-size: 16px;
+  margin-left: 170px;
 }
 
 .ic-title .ic {
   display: inline-flex;
-  margin-right: 10px;
-  width: 7px;
-  height: 7px;
+  margin-right: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 70%;
   background-color: transparent;
-  border: 10px solid #eb5d44;
+  border: 3px solid #f05d4a;
 }
 
 .dFlex,
@@ -36,10 +36,11 @@ nav ul,
 }
 
 .main_content {
+  margin-top: 30px;
+  margin-left: 130px;
   position: relative;
-  width: 70%;
+  width: 82%;
   height: 100%;
-  margin: 50px auto;
   padding: 50px 0 0;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -59,8 +60,7 @@ nav ul,
 }
 
 .main_content .card {
-  width: 30%;
-  border-radius: 15px;
+  width: 25%;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -90,9 +90,19 @@ nav ul,
   margin: 25px 0;
 }
 
+@font-face {
+  font-family: "TT Barrels Trl4";
+  font-style: normal;
+  font-weight: 400;
+  src: local("TT Barrels Trl"),
+    url("https://fonts.cdnfonts.com/s/96459/TT Barrels Trial Regular.woff")
+      format("woff");
+}
+
 .main_content .card .card_header h2 {
-  font-size: 18px;
+  font-size: 15px;
   color: #2d343e;
+  font-family: "TT Barrels Trl4";
 }
 
 .main_content .card .card_header p {
@@ -103,24 +113,55 @@ nav ul,
 }
 
 .main_content .card .card_header .price {
-  font-size: 25px;
-  color: #fe8033;
+  margin-top: -15px;
+  margin-left: -190px;
+  font-size: 16px;
+  color: #f05d4a;
+  font-family: "TT Barrels Trl4";
 }
 
 .main_content .card .card_header .price span {
+  margin-top: -5px;
   font-size: 15px;
   display: inline-block;
   vertical-align: top;
 }
 
-.main_content .card:hover {
+.main_content .card .card_img img:hover {
   background-color: #ffffff;
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(1.5);
+  transform: scale(1.5);
   cursor: pointer;
 }
 
-.main_content .card:hover .btn {
-  background-color: #fe8033;
+.main_content .card .btn .btnHand {
+  display: none;
+}
+
+.main_content .card:hover .btn .btnHand {
+  display: inline;
+  background-color: #f05d4a;
   color: #fff;
+  font-size: 20px;
+  background-size: 30px;
+  padding: 6px 10px 5px 10px;
+  margin-right: 5px;
+  border-radius: 10%;
+  border: #f05d4a;
+}
+
+.main_content .card .btn .btnCard {
+  display: none;
+}
+
+.main_content .card:hover .btn .btnCard {
+  display: inline;
+  background-color: #f05d4a;
+  color: #fff;
+  font-size: 20px;
+  background-size: 30px;
+  padding: 6px 10px 5px 10px;
+  margin-right: 5px;
+  border-radius: 10%;
+  border: #f05d4a;
 }

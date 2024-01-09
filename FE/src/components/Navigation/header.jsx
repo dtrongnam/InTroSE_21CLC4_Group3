@@ -1,15 +1,13 @@
 import React from "react";
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { Layout } from "antd";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./header.css";
 import logo from "../../images/shoes-logo.webp";
 import Login from "../Login/login.jsx";
 import DashBoard from "../pages/dashBoard.jsx";
-import ReactDOM from "react-dom/client";
 import Nav from "./Nav";
 import NotFound from "../../routes/NotFound";
-import Store from "../Store/Store";
-const { Header, Content, Sider, Footer } = Layout;
+const { Header } = Layout;
 
 function headNav() {
   return (

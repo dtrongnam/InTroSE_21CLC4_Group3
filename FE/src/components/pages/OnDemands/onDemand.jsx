@@ -1,12 +1,12 @@
-import "./bestSeller.css";
-import BestList from "./bestSellerList";
+import "./onDemands.css";
+//import BestList from "./bestSellerList";
 
-function BestSell() {
+function OnDemands() {
   return (
     <>
       <div className="ic-title">
         <div className="ic"></div>
-        BEST SELLERS
+        ON DEMANDS
       </div>
       <hr
         style={{
@@ -16,6 +16,7 @@ function BestSell() {
           height: "1px",
           backgroundColor: "#e1e8f2",
           opacity: "50%",
+          boxShadow: "none",
         }}
       ></hr>
       <hr
@@ -28,9 +29,8 @@ function BestSell() {
           marginTop: "-12px",
         }}
       ></hr>
-      <BestList></BestList>
     </>
   );
 }
 
-export default BestSell;
+export default OnDemands;
